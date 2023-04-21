@@ -1,8 +1,17 @@
-.square {
-    width: 50px; /* Задаем ширину квадрата */
-    height: 50px; /* Задаем высоту квадрата */
-    background-color: #ccc; /* Задаем цвет фона квадрата */
-    border: 1px solid #000; /* Задаем границу квадрата */
-    box-sizing: border-box; /* Учитываем границу внутри размера квадрата */
-    float: left; /* Выравниваем квадраты по горизонтали */
+td
+{
+    border: 2px solid black;
+    padding:  20px;
+    background-size: 50px 50px;
+}
+
+#tablecontroiner
+{
+    margin: 50px auto;
+    width: 200px;
+    max-width: 1000px;
+    min-width: 50px;
+    height: 200px;
+    max-height: 1200px;
+    min-height: 100px;
 }

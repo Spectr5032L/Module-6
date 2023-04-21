@@ -1,11 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Квадратная карта</title>
-    <link rel="stylesheet" href="Test.css">
+    <meta charset="UTF-8">
+	<title>A star</title>
+    <link rel="stylesheet" href="A star.css">
+    <script src = "A star.js"></script>
 </head>
 <body>
-    <!--<div id="grid"></div>-->
-    <script src="test.js"></script>
+    <label for="input"> Укажите длину сторон </label>
+    <input type="number" id = "input" min="2" max = "50">
+    <button onclick="createTable()"> Создать таблицу </button>
+    <button onclick="clearAll()"> Очистить таблицу </button>
+    <button onclick="findAway()"> Найти путь </button>
+    <div id="tablecontainer"></div>
+    <br>
+    <button onclick="createStart()"> Создать клетку старта </button>
+    <button onclick="createObstacle()"> Создать препятствие </button>
+    <button onclick="createFinish()"> Создать клетку финиша </button>
 </body>
 </html>
+
+<!-- Сделать кнопки видимыми только при генерации таблицы -->
+
