@@ -11,11 +11,18 @@ function createTable() {
       }
       table.appendChild(row);
     }
+
+    // Появление кнопок
+    var buttons = document.querySelectorAll(".Show");
+    buttons.forEach(function(button) {
+      button.style.display = "inline-block";
+    });
+
     container.innerHTML = "";
     container.appendChild(table);
   }
 
   function clearAll() {
     location.reload();
-    
+
   }

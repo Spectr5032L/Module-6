@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
 	<title>A star</title>
     <link rel="stylesheet" href="A star.css">
-    <script src = "A star.js"></script>
+    <script src = "A star.js"> </script>
 </head>
 <body>
     <label for="input"> Укажите длину сторон </label>
@@ -14,11 +14,8 @@
     <button onclick="findAway()"> Найти путь </button>
     <div id="tablecontainer"></div>
     <br>
-    <button onclick="createStart()"> Создать клетку старта </button>
-    <button onclick="createObstacle()"> Создать препятствие </button>
-    <button onclick="createFinish()"> Создать клетку финиша </button>
+    <button onclick="createStart()" style="display: none;" class = "Show"> Создать клетку старта </button>
+    <button onclick="createObstacle()" style="display: none;" class = "Show"> Создать клетку препятствия </button>
+    <button onclick="createFinish()" style="display: none;" class = "Show"> Создать клетку финиша </button>
 </body>
 </html>
-
-<!-- Сделать кнопки видимыми только при генерации таблицы -->
-
