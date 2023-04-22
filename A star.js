@@ -14,3 +14,8 @@ function createTable() {
     container.innerHTML = "";
     container.appendChild(table);
   }
+
+  function clearAll() {
+    location.reload();
+    
+  }
