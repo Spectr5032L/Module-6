@@ -27,13 +27,14 @@ function clearAll() {
   location.reload();
 }
 
+
 let fl_start = false;
 function createStart() {
   {
     let cells = document.getElementsByTagName("td");
   for (let i = 0; i < cells.length; i++) {
     cells[i].addEventListener("click", function() {
-      if(fl_start === false) this.style.backgroundColor = "green";
+      if(fl_start === false) this.style.backgroundColor = "aqua";
       fl_start = true;
     });
     }
@@ -41,13 +42,14 @@ function createStart() {
   
 }
 
+
 let fl_finish = false;
 function createFinish() {
   {
     let cells = document.getElementsByTagName("td");
   for (let i = 0; i < cells.length; i++) {
     cells[i].addEventListener("click", function() {
-      if(fl_finish === false) this.style.backgroundColor = "red";
+      if(fl_finish === false) this.style.backgroundColor = "purple";
       fl_finish = true;
     });
     }
@@ -55,12 +57,13 @@ function createFinish() {
   
 }
 
+
 function createObstacle() {
   {
     let cells = document.getElementsByTagName("td");
   for (let i = 0; i < cells.length; i++) {
     cells[i].addEventListener("click", function() {
-      this.style.backgroundColor = "black";
+        this.style.backgroundColor = "black";
     });
     }
   }
