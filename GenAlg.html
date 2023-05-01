@@ -6,10 +6,16 @@
     <title>Генетический алгоритм</title>
 </head>
 <body>
-    
     <br>
     <button id="start" class ="task3-button">Запустить алгоритм</button>
     <button id="clear" class ="task3-button">Очистить</button>
+    <br> <br>
+
+    <label for="slider_numberGenerations"> Выберите количество поколений: </label>
+    <input id = "slider_numberGenerations" type="range" min = 100 max = 10000>
+    <br>
+    <label for="slider_chanceOfMutation"> Выберите вероятность мутации: </label>
+    <input id = "slider_chanceOfMutation" type="range" min = 1 max = 100>
     <br> <br>
 
     <canvas class="canvas" width="750" height="750"></canvas>
