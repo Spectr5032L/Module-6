@@ -1,68 +1,32 @@
-function createTable() {
-  let n = document.getElementById("input").value;
-  let container = document.getElementById("tablecontainer");
-  let table = document.createElement("table");
-
-  for (let i = 0; i < n; i++) {
-    let row = document.createElement("tr");
-    for (let j = 0; j < n; j++) {
-      let cell = document.createElement("td");
-      row.appendChild(cell);
-    }
-    table.appendChild(row);
-  }
-
-  // Появление кнопок
-  var buttons = document.querySelectorAll(".Show");
-  buttons.forEach(function(button) {
-    button.style.display = "inline-block";
-  });
-
-  container.innerHTML = "";
-  container.appendChild(table);
-}
-
-
-function clearAll() {
-  location.reload();
-}
-
-let fl_start = false;
-function createStart() {
-  {
-    let cells = document.getElementsByTagName("td");
-  for (let i = 0; i < cells.length; i++) {
-    cells[i].addEventListener("click", function() {
-      if(fl_start === false) this.style.backgroundColor = "green";
-      fl_start = true;
-    });
+// A*
+let matrix = [];
+function set_table() {
+  // Delete the table
+  let table = document.getElementById('table');
+  if (table) table.remove();
+  // Create a new table
+  table = document.createElement('table');
+  table.id = 'table';
+  table.style.border = '1px solid red';
+  // Set the table size
+  let size = parseInt(document.getElementById('table_size').value);
+  document.getElementById('table_size').value = size;
+  // Clear the matrix
+  matrix = [];
+  // Create cells
+  for (let column = 0; column < size; column++) {
+    let row_element = table.insertRow(column);
+    matrix[column] = [];
+    for (let row = 0; row < size; row++) {
+      let cell = row_element.insertCell(row);
+      cell.dataset.mode = 'empty';
+      cell.dataset.x = column;
+      cell.dataset.y = row;
+      matrix[column][row] = 0;
     }
   }
-  
-}
-
-let fl_finish = false;
-function createFinish() {
-  {
-    let cells = document.getElementsByTagName("td");
-  for (let i = 0; i < cells.length; i++) {
-    cells[i].addEventListener("click", function() {
-      if(fl_finish === false) this.style.backgroundColor = "red";
-      fl_finish = true;
-    });
-    }
-  }
-  
-}
-
-function createObstacle() {
-  {
-    let cells = document.getElementsByTagName("td");
-  for (let i = 0; i < cells.length; i++) {
-    cells[i].addEventListener("click", function() {
-      this.style.backgroundColor = "black";
-    });
-    }
-  }
-  
+  // Add event listeners
+  table.addEventListener('click', create_wall_cell);
+  document.getElementById('table_block').appendChild(table);
+  default_start_finish_cells();
 }
