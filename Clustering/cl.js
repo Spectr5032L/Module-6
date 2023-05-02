@@ -73,3 +73,4 @@ function start()
         clusters = newClusters;
     }
 }
+//комент
