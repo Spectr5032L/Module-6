@@ -1,11 +1,365 @@
-td
-{
-    border: 2px solid black;
-    padding:  20px;
-    background-size: 50px 50px;
+body{
+    font-family: 'Open Sans', sans-serif;
+    /*font-family: 'Roboto', sans-serif; */
+}
+.header{
+    border-bottom: 1px solid black;
+    margin-bottom: 40px;
+}
+.logo{
+    fill:black;
+    width: 200px;
+    aspect-ratio: 1.5;
+}
+.container{
+    padding: 0 14px;
+    width: 1170px;
+    margin: 0 auto;
+}
+.cat{
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 57px;
+    left: 50vw;
+}
+.cat:hover + .catsound{
+
+    display: block;
+}
+.catsound{
+    display: none;
+    position: absolute;
+    top: 31px;
+    left: 50vw;
+    text-transform: uppercase;
+}
+.header-items{
+    display: flex;
+    justify-content: space-between;
+    align-items:flex-start;
+}
+.group{
+    font-size: 24px;
+    font-weight: 700;
+
+}
+.name-tab{
+    flex-basis:620px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 0;
+}
+.name-link{
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+    font-weight: 700;
+    transition: .25s all ;
+}
+.name-link:hover{
+    color: #8B008B;
+}
+main{
+    margin-bottom: 120px;
+}
+.flex-block-task{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+.task{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    aspect-ratio: 1;
+    background-size: cover;
+    font-family: 'Roboto', sans-serif;
+    border: 1px solid white;
+    transition: .2s;
+    background-position: center center;
+    background-repeat:no-repeat;
+    cursor: pointer;
 }
 
-.start {
-    background-color: green;
-  }
-  
+.task a{
+    text-decoration: none;
+    width: 100%;
+}
+.task-text{
+    text-align:center;
+    line-height: 40px;
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 40px;
+    height: 80px;
+    margin-bottom: 40px;
+}
+.task:hover .task-text{
+    color: #000000;
+}
+/* .task:nth-child(2):hover .task-text{
+    color: #000000;
+}
+.task:nth-child(2):hover .task-goto{
+    color: #000000;
+}
+.task:nth-child(3):hover .task-text{
+    color: #000000;
+}
+.task:nth-child(3):hover .task-goto{
+    color: #000000;
+}
+.task:nth-child(4):hover .task-text{
+    color: #000000;
+}
+.task:nth-child(4):hover .task-goto{
+    color: #000000;
+}
+.task:nth-child(5):hover .task-text{
+    color: #000000;
+}
+.task:nth-child(5):hover .task-goto{
+    color: #000000;
+}
+.task:nth-child(6):hover .task-text{
+    color: #000000;
+}
+.task:nth-child(6):hover .task-goto{
+    color: #000000;
+} */
+.task-goto{
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 18px;
+}
+footer{
+    padding-top: 100px;
+    padding-bottom: 123px;
+    border-top: 1px solid black;
+}
+.name-tabfooter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    list-style: none;
+}
+/*task1 */
+
+.header-items-task1{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.back-link{
+    font-size: 18px;
+    text-decoration: none;
+    color: white;
+    background-color: black;
+    padding: 10px 10px;
+    transition: 0.3s;
+}
+.back-link:hover{
+    -webkit-filter: invert();
+    filter: invert();
+}
+
+.main{
+    border: 1px solid black;
+}
+
+.slidercontainer {
+    width: 13%;
+    padding-top: 20px;
+    margin-left: 10px;
+}
+
+.slidercontainer p {
+    margin: 0;
+}
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 25px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #000000;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #000000;
+    cursor: pointer;
+}
+
+.switcher_block{
+    display: flex;
+    gap: 20px;
+    align-items: center
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+/* Скрыть флажок HTML по умолчанию */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* Ползунок */
+.slider_round {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000000;
+    transition: .4s;
+}
+
+.slider_round:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked + .slider_round {
+    background-color: #000000;
+}
+
+input:focus + .slider_round {
+    box-shadow: 0 0 1px #000000;
+}
+
+input:checked + .slider_round:before {
+    transform: translateX(26px);
+}
+
+/* Закругленные ползунки */
+.slider_round.round {
+    border-radius: 34px;
+}
+
+.slider_round.round:before {
+    border-radius: 50%;
+}
+
+.task1-data{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 50px;
+}
+.task1-input {
+    border: 1px solid black;
+    padding: 10px 20px;
+    margin-right: 40px;
+}
+.task1-button{
+    padding: 10px 20px;
+    background-color: black;
+    border: 1px solid black;
+    gap: 10px;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.task1-button:hover{
+    color: black;
+    background-color: white;
+}
+.task1-items{
+    text-align: center;
+}
+#mycanvas{
+    border: 1px solid black;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+.task2-data{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px
+}
+.task3-items{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+.task3-data{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+.task3-button{
+    padding: 10px 20px;
+    background-color: black;
+    border: 1px solid black;
+    gap: 10px;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+@media(max-width: 1250px){
+    .container{
+        max-width: 1000px;
+    }
+    .flex-block-task{
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+@media(max-width: 1050px){
+    .container{
+        max-width: 890px;
+    }
+}
+@media(max-width: 930px){
+    .container{
+        max-width: 700px;
+    }
+    .flex-block-task{
+        grid-template-columns: repeat(1,1fr);
+    }
+}
