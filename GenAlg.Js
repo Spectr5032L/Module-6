@@ -2,25 +2,40 @@ const canvas = document.querySelector("canvas");
 const context = canvas.getContext("2d");
 
 var vertexes = [];
-var size = 750;
 
 canvas.addEventListener('click', mouseClick);
 document.getElementById("clear").onclick = clear;
 document.getElementById("start").onclick = geneticAlg;
+document.getElementById("Input").onclick = drawField;
 
 
-context.moveTo(0, 0); // рамка для холста
-context.lineTo(size, 0);
-context.moveTo(size, 0);
-context.lineTo(size, size);
-context.moveTo(0, 0);
-context.lineTo(0, size);
-context.moveTo(0, size);
-context.lineTo(size, size);
-context.stroke();
+function drawField(){
+    let width = document.getElementById("width").value;
+    let height = document.getElementById("height").value;
+
+    canvas.width = width;
+    canvas.height = height;
+
+    context.moveTo(0, 0); // рамка для холста
+    context.lineTo(width, 0);
+    context.moveTo(width, 0);
+    context.lineTo(width, height);
+    context.moveTo(0, 0);
+    context.lineTo(0, height);
+    context.moveTo(0, height);
+    context.lineTo(width, height);
+    context.stroke();
+}
 
 function clear(){
-    location.reload();
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    drawField();
+    vertexes = [];
+}
+
+function clearNewPath(){
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    drawField();
 }
 
 function mouseClick(e){
@@ -82,8 +97,11 @@ function drawLines(from, to){
 
 }
 
+var fl = 0;
 function drawFinishPath(bestPath, color){
+    let LengthPath;
     bestPath.splice(bestPath.length - 1, 0, bestPath[0].slice())
+    LengthPath = bestPath.slice(-1);
     for (let i = 0; i < bestPath.length - 2; ++i){
         context.beginPath();
         let vector = [bestPath[i + 1][0] - bestPath[i][0] , bestPath[i + 1][1] - bestPath[i][1]];
@@ -101,6 +119,9 @@ function drawFinishPath(bestPath, color){
         context.lineWidth = 1;
         context.stroke()
     }
+
+    let outputText = document.getElementById("LengthPath");
+    if (fl === 1) outputText.textContent = Math.round(LengthPath);
 }
 
 function startPopulation(firstGeneration){
@@ -186,16 +207,23 @@ var chanceOfMutation = 0;
 
 var slider1 = document.getElementById("slider_numberGenerations");
 var slider2 = document.getElementById("slider_chanceOfMutation"); 
+
 slider1.addEventListener("input", function()
 {
     numberGenerations = parseInt(slider1.value);
+    outputText_G = document.getElementById("cout_numberGenerations");
+    outputText_G.textContent = numberGenerations;
 })
 slider2.addEventListener("input", function()
 {
     chanceOfMutation = parseInt(slider2.value);
+    outputText_M = document.getElementById("cout_chanceOfMutation");
+    outputText_M.textContent = chanceOfMutation;
 })
 
 async function geneticAlg(){
+    clearNewPath();
+    drawVertexes();
     let firstGeneration = [];
     let end = 500;
 
