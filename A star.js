@@ -1,5 +1,7 @@
 // A*
 let matrix = [];
+let start = new Node;
+let finish = new Node;
 function set_table() {
   // Delete the table
   let table = document.getElementById('table');
@@ -29,4 +31,14 @@ function set_table() {
   table.addEventListener('click', create_wall_cell);
   document.getElementById('table_block').appendChild(table);
   default_start_finish_cells();
+}
+// Set start at the start, finish at the finish
+function default_start_finish_cells() {
+  let size = document.getElementById('table_size').value;
+  start.x = 0;
+  start.y = 0;
+  finish.x = size - 1;
+  finish.y = size - 1;
+  document.getElementById('table').rows[start.y].cells[start.x].dataset.mode = 'start';
+  document.getElementById('table').rows[finish.y].cells[finish.x].dataset.mode = 'finish';
 }
