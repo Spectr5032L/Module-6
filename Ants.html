@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1200">
+    <title>1-ый код</title>
+</head>
+<body>
+
+    <br>
+    <button id="start">Running the algorithm</button>
+    <button id="clear">Clear</button>
+    <br> <br>
+
+    <style>
+        div {
+            display: inline-block;
+        }
+    </style>
+    <div> Длина пути: </div>  <div id="LengthPath"> *Запустите алгоритм* </div>
+    <br> <br>
+
+    <label for="slider_numberGenerations"> Выберите количество поколений: </label>
+    <input id = "slider_numberGenerations" type="range" min = 100 max = 10000> <div id="cout_numberGenerations"> 5000 </div>
+    <br>
+    <label for="slider_Q"> Выберите сколько феромонов оставляет муравей: </label>
+    <input id = "slider_Q" type="range" min = 1 max = 500> <div id="cout_Q"> 250 </div>
+    <br> <br>
+
+    <input type="number" id="width" placeholder="Введите значение ширины">
+    <input type="number" id="height" placeholder="Введите значение высоты">
+    <button id="Input">Ввод</button>
+    <br>  
+
+    <canvas class="canvas"></canvas>
+    <script src="Test_Ant.Js"></script>
+</body>
+</html>
