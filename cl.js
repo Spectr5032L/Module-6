@@ -1,7 +1,19 @@
 let canvas = document.getElementById("canvas");
 let canva = canvas.getContext("2d");
 let points = [];
+let points2 = [];
 let clusters = [];
+line();
+
+function line()
+{
+    canva.beginPath();
+    canva.lineWidth = 2;
+    canva.moveTo(700, 0);
+    canva.lineTo(700, 700);
+    canva.strokeStyle = "#b803f9";
+    canva.stroke();
+}
 
 function clear_canvas()
 {
@@ -14,14 +26,24 @@ function random_points()
 
     for(let i = 0; i < count_points; i++) 
     {
-        points.push({x: Math.random() * canvas.width, y: Math.random() * canvas.height});
+        let x = (Math.random() + 0.015) * 680;
+        let y = Math.random() * canvas.height;
+
+        points.push({x: x, y: y});
+        points2.push({x: x + 700, y: y});
 
         canva.clearRect(0, 0, canvas.width, canvas.height);
+        line();
         for(let i = 0; i < points.length; i++) 
         {
             let size_point = document.getElementById("size_point").value;  
             canva.beginPath();
             canva.arc(points[i].x, points[i].y, size_point, 0, 2 * Math.PI);
+            canva.fillStyle = "darkslategray";
+            canva.fill();
+
+            canva.beginPath();
+            canva.arc(points[i].x + 700, points[i].y, size_point, 0, 2 * Math.PI);
             canva.fillStyle = "darkslategray";
             canva.fill();
         }
@@ -32,9 +54,15 @@ canvas.addEventListener('click', function(event)
 {
     let x = event.pageX - canvas.offsetLeft;
     let y = event.pageY - canvas.offsetTop;
-    points.push({x: x, y: y});
+
+    if(x <= 700)
+    {
+        points.push({x: x, y: y});
+        points2.push({x: x + 700, y: y});
+    }
 
     canva.clearRect(0, 0, canvas.width, canvas.height);
+    line();
     for(let i = 0; i < points.length; i++) 
     {
         let size_point = document.getElementById("size_point").value;  
@@ -42,12 +70,17 @@ canvas.addEventListener('click', function(event)
         canva.arc(points[i].x, points[i].y, size_point, 0, 2 * Math.PI);
         canva.fillStyle = "darkslategray";
         canva.fill();
+
+        canva.beginPath();
+        canva.arc(points[i].x + 700, points[i].y, size_point, 0, 2 * Math.PI);
+        canva.fillStyle = "darkslategray";
+        canva.fill();
     }
 });
 
 function start_with_clusters()
 {
-    alert("Не расставляйте центры слишком близко друг к другу иначе алгоритм будет работать не корректно")
+    //alert("Не расставляйте центры слишком близко друг к другу иначе алгоритм будет работать не корректно")
 
     canvas.addEventListener('click', function(event)
     {
@@ -70,6 +103,7 @@ function start_with_clusters()
         if(cluster_Index == count_clusters)
         {
             start();
+            DBSCAN(points2);
         }
     });
 }
@@ -121,4 +155,9 @@ function start()
         }
         clusters = newClusters;
     }
+}
+
+function DBSCAN(points) 
+{
+	
 }
