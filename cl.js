@@ -60,6 +60,11 @@ canvas.addEventListener('click', function(event)
         points.push({x: x, y: y});
         points2.push({x: x + 700, y: y});
     }
+    else
+    {
+        points.push({x: x - 700, y: y});
+        points2.push({x: x, y: y});
+    }
 
     canva.clearRect(0, 0, canvas.width, canvas.height);
     line();
@@ -157,7 +162,99 @@ function start()
     }
 }
 
+let colors = [
+    "#370042",
+    "#000000",
+    "#d180c5",
+    "#9e5493",
+    "#540048",
+    "#483d8b",
+    "#0f129c",
+    "#8A2BE2",
+    "#c71585",
+    "#a658e2",
+    "#d4ace2",
+    "#a497e2",
+    "#7a6ae2",
+    "#e23bcc",
+    "#e200e2"
+]
+
 function DBSCAN(points) 
 {
-	
+	let min_count_points = 2;
+	let min_Distance = 20;
+	let size_point = document.getElementById("size_point").value;
+	min_Distance *= size_point / 5;
+    let cluster_ind = 0;
+    let visited = new Set();
+    let cluster = new Array(points.length).fill(-1);
+
+    function cluster_expansion(main_point, cluster_ind) 
+    {
+        cluster[main_point] = cluster_ind;
+        let neighbors = search_neighbors(main_point);
+
+        for (let i = 0; i < neighbors.length; i++) 
+        {
+            let next_point = neighbors[i];
+
+            if (!visited.has(next_point)) 
+            {
+                visited.add(next_point);
+                let next_Neighbors = search_neighbors(next_point);
+
+                if (next_Neighbors.length >= min_count_points) 
+                    neighbors = neighbors.concat(next_Neighbors);
+            }
+
+            if (cluster[next_point] === -1) 
+                cluster[next_point] = cluster_ind;
+        }
+    }
+    
+    function search_neighbors(main_point) 
+    {
+        let neighbors = [];
+        for (let i = 0; i < points.length; i++) 
+			if (i !== main_point && Math.sqrt((points[i].x - points[main_point].x) ** 2 + (points[i].y - points[main_point].y) ** 2) <= min_Distance)
+                neighbors.push(i);
+        return neighbors;
+    }
+  
+    for (let i = 0; i < points.length; i++) 
+    {
+        if (!visited.has(i))
+        {
+            visited.add(i);
+            let neighbors = search_neighbors(i);
+
+            if (neighbors.length < min_count_points) 
+                cluster[i] = -1;
+            else 
+            {
+                cluster[i] = cluster_ind;
+                cluster_expansion(i, cluster_ind);
+                cluster_ind++;
+            }
+        }
+    }
+
+    for(let i = 0; i < cluster.length; i++)
+    {
+        if (cluster[i] !== -1)
+        {
+            canva.beginPath();
+            canva.arc(points[i].x, points[i].y, size_point, 0, 2 * Math.PI);
+            canva.fillStyle = colors[cluster[i]];
+            canva.fill();
+        }
+        else
+        {
+            canva.beginPath();
+            canva.arc(points[i].x, points[i].y, size_point, 0, 2 * Math.PI);
+            canva.fillStyle = "darkslategray";
+            canva.fill();
+        }
+    }
 }
