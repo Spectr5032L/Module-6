@@ -8,6 +8,8 @@ document.getElementById("clear").onclick = clear;
 document.getElementById("start").onclick = antsAlgoritm;
 document.getElementById("Input").onclick = drawField;
 
+
+
 function drawField(){
     let width = document.getElementById("width").value;
     let height = document.getElementById("height").value;
