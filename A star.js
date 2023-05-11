@@ -82,10 +82,7 @@ function createStartFinishCells(event) {
     table.removeEventListener('click', createStartFinishCells);
     table.addEventListener('click', set_wall_cell);
     // Врубаем кнопочки
-    mazeButton.disabled  = false;
-    algorithmButton.disabled = false;
-    changeSize.disabled = false;
-    setStartFinish.disabled = false;
+    on();
   }
 }
 // Функция создания стены
@@ -105,10 +102,7 @@ function setWallCell(event) {
 async function aStar() {
   let count = 0;
   // Выключаем кнопочки
-  mazeButton.disabled = true;
-  algorithmButton.disabled = true;
-  changeSize.disabled = true;
-  setStartFinish.disabled = true;
+  off();
   // Извлекаем размер
   let size = document.getElementById('tableSize').value;
   // Устанавливаем начальный и конечный узлы, если они еще не установлены
@@ -178,10 +172,7 @@ async function aStar() {
       }
     }
   }
-  mazeButton.disabled  = false;
-  algorithmButton.disabled = false;
-  changeSize.disabled = false;
-  setStartFinish.disabled = false;
+  on();
 }
 function heuristic(v, end) {
   return Math.abs(v.x - end.x) + Math.abs(v.y - end.y);
@@ -197,4 +188,16 @@ function compare(a, b) {
   else {
     return 0;
   }
+}
+function on(){
+  mazeButton.disabled  = false;
+  algorithmButton.disabled = false;
+  changeSize.disabled = false;
+  setStartFinish.disabled = false;
+}
+function off(){
+  mazeButton.disabled = true;
+  algorithmButton.disabled = true;
+  changeSize.disabled = true;
+  setStartFinish.disabled = true;
 }
