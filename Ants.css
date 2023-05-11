@@ -9,6 +9,7 @@
 
 
   .animated-text p {
+	font-size: 10.5vw;
 	animation-name: fade-in;
 	animation-duration: 5s; 
 	animation-timing-function: ease-in-out; 
