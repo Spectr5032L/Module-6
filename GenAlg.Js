@@ -1,7 +1,7 @@
 const canvas = document.querySelector("canvas");
 const context = canvas.getContext("2d");
 
-var vertexes = [];
+let vertexes = [];
 
 canvas.addEventListener('click', mouseClick);
 document.getElementById("clear").onclick = clear;
@@ -59,7 +59,7 @@ function mouseClick(e){
 }
 
 function drawVertexes(){
-    for (let i = 0; i < vertexes.length; ++i){
+    for (let i = 0; i < vertexes.length; i++){
         context.beginPath();
         context.fillStyle = '#ff4242';
         context.fillRect(vertexes[i][0] - 10, vertexes[i][1] - 10, 20, 20);
@@ -68,7 +68,7 @@ function drawVertexes(){
 
 function drawLines(from, to){
     from.splice(from.length - 1, 0, from[0].slice())
-    for (let i = 0; i < from.length - 1; ++i){
+    for (let i = 0; i < from.length - 1; i++){
         context.beginPath();
         let vector = [from[i + 1][0] - from[i][0] , from[i + 1][1] - from[i][1]];
         let s = Math.sqrt(vector[0] * vector[0] + vector[1] * vector[1]);
@@ -94,15 +94,15 @@ function drawLines(from, to){
         context.lineWidth = 1;
         context.stroke();
     }
-
 }
 
-var fl = 0;
+let fl = 0;
 function drawFinishPath(bestPath, color){
     let LengthPath;
     bestPath.splice(bestPath.length - 1, 0, bestPath[0].slice())
     LengthPath = bestPath.slice(-1);
-    for (let i = 0; i < bestPath.length - 2; ++i){
+    
+    for (let i = 0; i < bestPath.length - 2; i++){
         context.beginPath();
         let vector = [bestPath[i + 1][0] - bestPath[i][0] , bestPath[i + 1][1] - bestPath[i][1]];
         let s = Math.sqrt(vector[0] * vector[0] + vector[1] * vector[1]);
@@ -130,7 +130,7 @@ function startPopulation(firstGeneration){
     buf.push(distance(buf));
     res.push(buf.slice());
 
-    for (let i = 0; i < vertexes.length * vertexes.length; ++i){
+    for (let i = 0; i < vertexes.length * vertexes.length; i++){
         buf = firstGeneration.slice();
         buf = permutation(buf)
         buf.push(distance(buf));
@@ -141,7 +141,7 @@ function startPopulation(firstGeneration){
 
 function permutation(array) {
     let a = array.slice()
-    for (let i = 0; i < vertexes.length - 1; ++i) {
+    for (let i = 0; i < vertexes.length - 1; i++) {
         let r1 = randomNumber(1, vertexes.length - 1);
         let r2 = randomNumber(1, vertexes.length - 1);
         [a[r1], a[r2]] = [a[r2], a[r1]];
@@ -160,7 +160,7 @@ function crossingParents(firstParent, secondParent){
 
 function distance(chromosome){
     let ans = 0;
-    for (let i = 0; i < chromosome.length - 1; ++i){
+    for (let i = 0; i < chromosome.length - 1; i++){
         ans += Math.sqrt(Math.pow(chromosome[i][0] - chromosome[i + 1][0], 2) + Math.pow(chromosome[i][1] - chromosome[i + 1][1], 2));
     }
     ans += Math.sqrt(Math.pow(chromosome[chromosome.length - 1][0] - chromosome[0][0], 2) + Math.pow(chromosome[chromosome.length - 1][1] - chromosome[0][1], 2));
@@ -184,7 +184,6 @@ function cross(firstParent, secondParent){
         let i = rand[0], j = rand[1];
         [child[i], child[j]] = [child[j], child[i]];
     }
-
     return child;
 }
 
@@ -201,24 +200,24 @@ function twoRandomNumbers(min, max){
     return [a, b];
 }
 
-var lengthChromosom; // исключая начальную и конечную
-var numberGenerations = 0;
-var chanceOfMutation = 0;
+let lengthChromosom; // исключая начальную и конечную
+let numberGenerations = 0;
+let chanceOfMutation = 0;
 
-var slider1 = document.getElementById("slider_numberGenerations");
-var slider2 = document.getElementById("slider_chanceOfMutation"); 
+let slider1 = document.getElementById("sliderNumberGenerations");
+let slider2 = document.getElementById("sliderChanceOfMutation"); 
 
 slider1.addEventListener("input", function()
 {
     numberGenerations = parseInt(slider1.value);
-    outputText_G = document.getElementById("cout_numberGenerations");
-    outputText_G.textContent = numberGenerations;
+    outputTextG = document.getElementById("coutNumberGenerations");
+    outputTextG.textContent = numberGenerations;
 })
 slider2.addEventListener("input", function()
 {
     chanceOfMutation = parseInt(slider2.value);
-    outputText_M = document.getElementById("cout_chanceOfMutation");
-    outputText_M.textContent = chanceOfMutation;
+    outputTextM = document.getElementById("coutChanceOfMutation");
+    outputTextM.textContent = chanceOfMutation;
 })
 
 async function geneticAlg(){
@@ -227,7 +226,7 @@ async function geneticAlg(){
     let firstGeneration = [];
     let end = 500;
 
-    for (let i = 0; i < vertexes.length; ++i){
+    for (let i = 0; i < vertexes.length; i++){
         firstGeneration.push(vertexes[i]);
     }
     lengthChromosom = firstGeneration.length;
@@ -238,7 +237,7 @@ async function geneticAlg(){
     let bestChromosome = population[0].slice();
     drawFinishPath(bestChromosome, "rgb(38, 38, 38)"); // 250, 142, 142 - красный 38, 38, 38 - черный (светлый)
 
-    for(let i = 0; i < numberGenerations; ++i){
+    for(let i = 0; i < numberGenerations; i++){
         if (end === 0){
             fl = 1;
             drawFinishPath(bestChromosome, "rgb(142,250,142)") // 142,250,142 - зеленый

@@ -1,18 +1,63 @@
 .animated-text p {
 	opacity: 0;
-  }
+}
 
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 
-  @keyframes fade-in {
-	from { opacity: 0; }
-	to { opacity: 1; }
-  }
-
-
-  .animated-text p {
+.animated-text p {
 	font-size: 10.5vw;
 	animation-name: fade-in;
 	animation-duration: 5s; 
 	animation-timing-function: ease-in-out; 
 	animation-fill-mode: forwards;
-  }
+}
+
+button:hover {
+	background-color: #848484;
+}
+
+button:active {
+	background-color: rgb(98, 151, 255);
+}
+
+label::before {
+      content: "*";
+      color: blue;
+}
+
+button {
+  background-color: blue; /* цвет фона */
+  border: none; /* убрать границу */
+  color: white; /* цвет текста */
+  padding: 5px 15px; /* размер отступов */
+  text-align: center; /* выравнивание текста по центру */
+  text-decoration: none; /* убрать подчеркивание */
+  font-size: 16px; /* размер текста */
+  margin: 4px 2px; 
+  cursor: pointer; /* заменить курсор на пальчик при наведении */
+  border-radius: 10px; /* закругление углов */
+}
+
+header p {
+  font-size: 48px;
+  font-weight: bold;
+  color: blue;
+  text-shadow: 2px 2px 2px #000000;
+  margin-bottom: 20px;
+}
+
+input[type="number"] {
+  font-size: 16px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  padding: 5px;
+  margin-right: 10px;
+}
+
+input[type="number"]:focus {
+  outline: none;
+  border: 2px solid blue;
+}
