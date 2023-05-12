@@ -1,6 +1,6 @@
 const canvas = document.querySelector("canvas");
 const context = canvas.getContext("2d");
-var vertexes = [];
+let vertexes = [];
 
 
 canvas.addEventListener('click', mouseClick);
@@ -64,7 +64,7 @@ function drawLines(from, to){
     let a = from.slice()
     a.push(a[0].slice())
 
-    for (let i = 0; i < a.length - 1; ++i){
+    for (let i = 0; i < a.length - 1; i++){
         context.beginPath();
         let vector = [a[i + 1][0] - a[i][0] , a[i + 1][1] - a[i][1]];
         let s = Math.sqrt(vector[0] * vector[0] + vector[1] * vector[1]);
@@ -82,7 +82,7 @@ function drawLines(from, to){
     let bufer = to.slice();
     bufer.push(bufer[0].slice())
 
-    for (let i = 0; i < bufer.length - 1; ++i){
+    for (let i = 0; i < bufer.length - 1; i++){
         context.beginPath();
         let vector = [bufer[i + 1][0] - bufer[i][0] , bufer[i + 1][1] - bufer[i][1]];
         let s = Math.sqrt(vector[0] * vector[0] + vector[1] * vector[1]);
@@ -98,7 +98,7 @@ function drawLines(from, to){
 function drawFinishPath(bestPath, color){
     bestPath.push(bestPath[0].slice());
 
-    for (let i = 0; i < bestPath.length - 1; ++i){
+    for (let i = 0; i < bestPath.length - 1; i++){
         context.beginPath();
         let vector = [bestPath[i + 1][0] - bestPath[i][0] , bestPath[i + 1][1] - bestPath[i][1]];
         let s = Math.sqrt(vector[0] * vector[0] + vector[1] * vector[1]);
@@ -129,7 +129,7 @@ function drawFinishPath(bestPath, color){
 
 
 function drawVertexes(){
-    for (let i = 0; i < vertexes.length; ++i){
+    for (let i = 0; i < vertexes.length; i++){
         context.beginPath();
         context.fillStyle = '#ff4242';      // ff4242 - красный a8a1a1 - серый
         context.fillRect(vertexes[i][0] - 10, vertexes[i][1] - 10, 20, 20);
@@ -149,35 +149,35 @@ function distanceBetweenTwoPoints(first, second){
     return Math.sqrt(Math.pow(first[0] - second[0], 2) + Math.pow(first[1] - second[1], 2));
 }
 
-function allDistanceForPath(path_idx){
+function allDistanceForPath(pathIdx){
     let dist = 0
-    for (let i = 0; i < path_idx.length - 1; ++i){
-        dist += distanceBetweenTwoPoints(vertexes[path_idx[i]].slice(), vertexes[path_idx[i + 1]].slice());
+    for (let i = 0; i < pathIdx.length - 1; i++){
+        dist += distanceBetweenTwoPoints(vertexes[pathIdx[i]].slice(), vertexes[pathIdx[i + 1]].slice());
     }
-    dist += distanceBetweenTwoPoints(vertexes[path_idx[path_idx.length - 1]].slice(), vertexes[path_idx[0]].slice());
+    dist += distanceBetweenTwoPoints(vertexes[pathIdx[pathIdx.length - 1]].slice(), vertexes[pathIdx[0]].slice());
     return dist;
 }
 
-var numberGenerations = 5000;
-var alpha = 1; 
-var beta = 1;
-var Q = 250; 
-var evaporation = 0.64; 
+let numberGenerations = 5000;
+let alpha = 1; 
+let beta = 1;
+let Q = 250; 
+let evaporation = 0.64; 
 
-var slider1 = document.getElementById("slider_numberGenerations"); 
-var slider2 = document.getElementById("slider_Q");
+let slider1 = document.getElementById("sliderNumberGenerations"); 
+let slider2 = document.getElementById("sliderQ");
 
 slider1.addEventListener("input", function()
 {
     numberGenerations = parseInt(slider1.value);
-    outputText_G = document.getElementById("cout_numberGenerations");
-    outputText_G.textContent = numberGenerations;
+    outputTextG = document.getElementById("coutNumberGenerations");
+    outputTextG.textContent = numberGenerations;
 })
 slider2.addEventListener("input", function()
 {
     Q = parseInt(slider2.value);
-    outputText_H = document.getElementById("cout_Q");
-    outputText_H.textContent = Q;
+    outputTextH = document.getElementById("coutQ");
+    outputTextH.textContent = Q;
 })
 
 async function antsAlgoritm(){
@@ -190,21 +190,21 @@ async function antsAlgoritm(){
     let bufer = vertexes.slice(0);
 
     let iPath = [];
-    for (let i = 0; i < vertexes.length; ++i){
+    for (let i = 0; i < vertexes.length; i++){
         iPath.push(i);
     }
 
     bestAnts.push(bufer, iPath, allDistanceForPath(iPath));
 
-    var pheromones = [];
-    var distance = [];
+    let pheromones = [];
+    let distance = [];
 
-    for (let i = 0; i < vertexesLength; ++i){
+    for (let i = 0; i < vertexesLength; i++){
         pheromones[i] = new Array(vertexesLength);
         distance[i] = new Array(vertexesLength);
     }
 
-    for (let i = 0; i < vertexes.length - 1; ++i){
+    for (let i = 0; i < vertexes.length - 1; i++){
         for (let j = i + 1; j < vertexes.length; ++j){
             distance[i][j] = Q / distanceBetweenTwoPoints(vertexes[i].slice(), vertexes[j].slice());
             pheromones[i][j] = 0.2;
@@ -214,7 +214,7 @@ async function antsAlgoritm(){
 
     let end = vertexesLength * 2; 
 
-    for (let i = 0; i < numberGenerations; ++i){
+    for (let i = 0; i < numberGenerations; i++){
         if (end === 0){
             drawFinishPath(bestAnts[0], "rgb(142,250,142)");
             break;
@@ -222,33 +222,33 @@ async function antsAlgoritm(){
 
         let ways = [];
         let path = [];
-        let path_idx = [];
+        let pathIdx = [];
 
         for (let ant = 0; ant < vertexes.length; ++ant){
             path = [];
-            path_idx = [];
-            let startVertex_idx = ant;
-            let startVertex = vertexes[startVertex_idx].slice();
+            pathIdx = [];
+            let startVertexIdx = ant;
+            let startVertex = vertexes[startVertexIdx].slice();
 
             path.push(startVertex);
-            path_idx.push(startVertex_idx);
+            pathIdx.push(startVertexIdx);
 
             while (path.length !== vertexes.length){
                 let sumOfDesires = 0;
 
                 let p = [];
                 for (let j = 0; j < vertexes.length; ++j) {
-                    if (path_idx.indexOf(j) !== -1){
+                    if (pathIdx.indexOf(j) !== -1){
                         continue;
                     }
-                    let min = Math.min(startVertex_idx, j);
-                    let max = Math.max(startVertex_idx, j);
+                    let min = Math.min(startVertexIdx, j);
+                    let max = Math.max(startVertexIdx, j);
                     let desire = Math.pow(pheromones[min][max], alpha) * Math.pow(distance[min][max], beta);
                     p.push([j,desire]);
                     sumOfDesires += desire;
                 }
 
-                for (let i = 0; i < p.length; ++i){
+                for (let i = 0; i < p.length; i++){
                     p[i][1] /= sumOfDesires;
                 }
 
@@ -258,35 +258,35 @@ async function antsAlgoritm(){
 
                 let rand = Math.random()
                 let choice
-                for (let i = 0; i < p.length; ++i){
+                for (let i = 0; i < p.length; i++){
                     if (rand < p[i][1]){
                         choice = p[i][0];
                         break;
                     }
                 }
-                startVertex_idx = choice;
+                startVertexIdx = choice;
 
-                startVertex = vertexes[startVertex_idx].slice();
+                startVertex = vertexes[startVertexIdx].slice();
                 path.push(startVertex.slice());
-                path_idx.push(startVertex_idx);
+                pathIdx.push(startVertexIdx);
             }
-            ways.push([path.slice(), path_idx.slice(), allDistanceForPath(path_idx)])
+            ways.push([path.slice(), pathIdx.slice(), allDistanceForPath(pathIdx)])
         }
 
         ways.sort((function (a, bufer) { return a[2] - bufer[2]}));
 
-        for (let i = 0; i < vertexesLength - 1; ++i){
+        for (let i = 0; i < vertexesLength - 1; i++){
             for (let j = i + 1; j < vertexesLength; ++j){
                 pheromones[i][j] *= evaporation;
             }
         }
 
-        for (let i = 0; i < ways.length; ++i){
-            let idx_path = ways[i][1].slice();
+        for (let i = 0; i < ways.length; i++){
+            let idxPath = ways[i][1].slice();
             let lenOfPath = ways[i][2]
             for (let j = 0; j < vertexesLength - 1; ++j){
-                let min = Math.min(idx_path[j], idx_path[j + 1]);
-                let max = Math.max(idx_path[j], idx_path[j + 1]);
+                let min = Math.min(idxPath[j], idxPath[j + 1]);
+                let max = Math.max(idxPath[j], idxPath[j + 1]);
                 pheromones[min][max] += Q / lenOfPath;
             }
         }
