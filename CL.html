@@ -4,35 +4,36 @@
     <meta charset="utf-8">
     <title>Кластеризация</title>
     <link rel="stylesheet" href="Cl.css">
-    <style>
-        canvas{width: 1400px; height: 650px; outline: 2px solid #b803f9;}
-        div{font-size: 23px;}
-        p{font-size: 230px;}
-    </style>
 </head>
 <body>
     <center>
-    <br>
-    <header class="animated-text">
-        <p>Кластеризация</p>
-    </header>
-    <br><br>
-    <div>
-        <span style="margin-right: 330px;">K-means</span>
-        <span style="margin-left: 330px;">DBSCAN</span>
-    </div>
-    <canvas id="canvas" width="1400" height="650"></canvas>
-    <br>
-    <label for="input"> Размер точек </label>
-    <input type="number" id = "size_point" min="1" max = "15" value="10">
-    <label for="input"> Количество кластеров </label>
-    <input type="number" id = "count_clusters" min="2" max = "5" value="3">
-    <button onclick="start_with_clusters()">Запустить алгоритм</button>
-    <button onclick="clear_canvas()">Сбросить все настройки</button>
-    <label for="input"> Количество точек </label>
-    <input type="number" id = "count_points" min="10" max = "200" value="20" step="5">
-    <button onclick="random_points()">Расставить точки автоматически</button>
-    <script src="cl.js"></script>   
+        <br>
+        <header class="animated-text">
+            <p>Кластеризация</p>
+        </header>
+        <br><br>
+        <div class="div">
+            <span class="spanRight">K-means</span>
+            <span class="spanLeft">DBSCAN</span>
+        </div>
+        
+        <canvas class="canvas" id="canvas" width="1400" height="650"></canvas>
+        <br>
+        <label for="input"> Размер точек </label>
+        <input type="number" id = "sizePoint" min="3" max = "15" value="10">
+
+        <label for="input"> Количество кластеров </label>
+        <input type="number" id = "countClusters" min="2" max = "5" value="3">
+
+        <button onclick="start_with_clusters()">Запустить алгоритм</button>
+        <button onclick="clear_canvas()">Сбросить все настройки</button>
+
+        <label for="input"> Количество точек </label>
+        <input type="number" id = "countPoints" min="10" max = "200" value="20" step="5">
+
+        <button onclick="random_points()">Расставить точки автоматически</button>
+
+        <script src="cl.js"></script>  
     </center>
 </body>
 </html>
