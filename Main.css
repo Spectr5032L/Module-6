@@ -1,7 +1,7 @@
 .container {
   position: relative;
   width: 1500px;
-  height: 1500px;
+  height: 1600px;
   transform-origin: top left;
   /* transform: rotate(-90deg) translateX(-1453px); */
 }
@@ -13,7 +13,12 @@
   object-fit: cover;
 }
 
-.title_1 {
+body {
+    background-image: url("Фон/2.jpg");
+    background-size: cover;
+  }
+
+.title1 {
     position: absolute;
     top: 10px;
     left: 200px;
@@ -29,7 +34,7 @@
     text-align: center;
   }
 
-.title_2 {
+.title2 {
     position: absolute;
     width: 241px;
     height: 88px;
@@ -45,7 +50,7 @@
     text-align: center;
 }
 
-.square {
+.titleS {
     position: absolute;
     width: 1077px;
     height: 234px;
@@ -56,40 +61,276 @@
     top: 50px;
     z-index: 1;
   }
-  
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* 
-  p {
+  .GenS_A {
     position: absolute;
-    width: 1037px;
-    height: 124px;
-    left: calc(50% - 1037px/2 - 0.5px);
-    top: calc(50% - 124px/2 - 734px);
-    font-family: 'Hitch Hike', cursive;
+    width: 250px;
+    height: 350px;
+    background: linear-gradient(28.09deg, #5200FF 0%, rgba(255, 0, 184, 0) 113.65%);
+    filter: drop-shadow(0px 4px 5px rgba(0, 0, 0, 0.25));
+    border-radius: 20px;
+    left: 28px;
+    top: 410px;
+  }
+  
+  .Gen1_A {
+    position: absolute;
+    left: 96px;
+    top: 630px;
+    width: 122px;
+    height: 52px;
+    font-family: 'Hitch Hike', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 90px;
-    line-height: 124px;
+    font-size: 64px;
+    line-height: 88px;
+    color: #FFFFFF;
+    z-index: 2;
+    text-align: center;
+  }
+
+  .emodA {
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    left: 157px;
+    top: 580px;
+    transform: translate(-50%, -50%);
+    background: url("Иконки/A star.png");
+    border-radius: 20px;
+    filter: drop-shadow(0px 4px 5px rgba(0, 0, 0, 0.25));
+}
+
+.CLS {
+    position: absolute;
+    width: 250px;
+    height: 350px;
+    background: linear-gradient(27.03deg, #8F00FF 0%, #8F00FF 0.01%, rgba(0, 255, 194, 0.6) 97.92%);
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    left: 409px;
+    top: 410px;
+  }
+
+  .CL1 {
+    position: absolute;
+    width: 244px;
+    height: 32px;
+    left: 413px;
+    top: 650px;
+    font-family: 'Hitch Hike', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 66px;
+    color: #FFFFFF;
+    z-index: 2;
+    text-align: center;
+  }
+
+  .emodCL1 {
+    position: absolute;
+    width: 127.4px;
+    height: 122.13px;
+    left: 430px;
+    top: 450px;
+    /* transform: translate(-50%, -50%); */
+    background: url("Иконки/CL1.png");
+    border-radius: 20px;
+    filter: drop-shadow(0px 4px 5px rgba(0, 0, 0, 0.25));
+}
+
+.emodCL2 {
+    position: absolute;
+    width: 100px;
+    height: 122px;
+    left: 550px;
+    top: 570px;
+    /* transform: translate(-50%, -50%); */
+    background: url("Иконки/CL2.png");
+    border-radius: 20px;
+    filter: drop-shadow(0px 4px 5px rgba(0, 0, 0, 0.25));
+}
+
+.GenS {
+    position: absolute;
+    width: 250px;
+    height: 350px;
+    background: linear-gradient(25.81deg, rgba(0, 26, 255, 0.88) 0%, rgba(255, 168, 0, 0.88) 98.3%);
+    filter: drop-shadow(0px 4px 5px rgba(0, 0, 0, 0.25));
+    border-radius: 30px;
+    left: 790px;
+    top: 410px;
+  }
+  
+  .Gen1 {
+    position: absolute;
+    left: 795px;
+    top: 650px;
+    width: 244px;
+    height: 32px;
+    font-family: 'Hitch Hike', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 66px;
+    color: #FFFFFF;
+    z-index: 2;
+    text-align: center;
+  }
+
+  .emodG {
+    position: absolute;
+    width: 234px;
+    height: 234px;
+    left: 925px;
+    top: 560px;
+    transform: translate(-50%, -50%);
+    background: url("Иконки/GenAlg.png");
+    border-radius: 30px;
+    filter: drop-shadow(0px 4px 5px rgba(0, 0, 0, 0.25));
+}
+
+.AntS {
+    position: absolute;
+    width: 250px;
+    height: 350px;
+    background: linear-gradient(27.03deg, #FFA800 0%, rgba(255, 0, 0, 0.22) 100%);
+    filter: drop-shadow(0px 4px 5px rgba(0, 0, 0, 0.25));
+    border-radius: 30px;
+    left: 1160px;
+    top: 410px;
+  }
+
+  .Ant1 {
+    position: absolute;
+    left: 1165px;
+    top: 650px;
+    width: 244px;
+    height: 32px;
+    font-family: 'Hitch Hike', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 66px;
+    color: #FFFFFF;
+    z-index: 2;
+    text-align: center;
+  }
+
+  .emodAnt {
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    left: 1285px;
+    top: 560px;
+    transform: translate(-50%, -50%);
+    background: url("Иконки/Ant.png");
+    border-radius: 20px;
+    filter: drop-shadow(0px 4px 5px rgba(0, 0, 0, 0.25));
+}
+
+.ES {
+    position: absolute;
+    width: 306px;
+    height: 377px;
+    background: white;
+    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    left: 46px;
+    top: 1164px;
+  }
+
+  .E1 {
+    position: absolute;
+    width: 277px;
+    height: 48px;
+    left: 75px;
+    top: 1050px;
+    font-family: 'Hitch Hike', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 52px;
+    line-height: 72px;
     color: #FFFFFF;
   }
-   */
-  
-  /* body {
-    background-image: url("Фон/2.jpg");
-    background-size: cover;
-  } */
-  
+
+  .emodE {
+    position: absolute;
+    width: 306px;
+    height: 393px;
+    left: 30px;
+    top: 1170px;
+    background: url("Аватар/Егор.png");
+    z-index: 2;
+}
+
+  .MS {
+    position: absolute;
+    width: 306px;
+    height: 377px;
+    background: white;
+    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    left: 584px;
+    top: 1164px;
+  }
+
+  .M1 {
+    position: absolute;
+    width: 285px;
+    height: 48px;
+    left: 595px;
+    top: 1050px;
+    font-family: 'Hitch Hike', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 52px;
+    line-height: 72px;
+    color: #FFFFFF;
+  }
+
+  .emodM {
+    position: absolute;
+    width: 306px;
+    height: 393px;
+    left: 580px;
+    top: 1165px;
+    background: url("Аватар/Миша.png");
+    z-index: 2;
+}
+
+  .US {
+    position: absolute;
+    width: 306px;
+    height: 377px;
+    background: white;
+    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    left: 1104px;
+    top: 1164px;
+  }
+
+  .U1 {
+    position: absolute;
+    width: 238px;
+    height: 48px;
+    left: 1138px;
+    top: 1050px;
+    font-family: 'Hitch Hike', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 52px;
+    line-height: 72px;
+    color: #FFFFFF;
+  }
+
+  .emodU {
+    position: absolute;
+    width: 306px;
+    height: 393px;
+    left: 1090px;
+    top: 1168px;
+    background: url("Аватар/Ульяна.png");
+    z-index: 2;
+}
