@@ -28,6 +28,10 @@ label::before {
       color: blue;
 }
 
+div {
+  display: inline-block;
+}
+
 button {
   background-color: blue; /* цвет фона */
   border: none; /* убрать границу */

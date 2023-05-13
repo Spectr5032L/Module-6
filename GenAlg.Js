@@ -24,6 +24,8 @@ function drawField(){
     context.lineTo(0, height);
     context.moveTo(0, height);
     context.lineTo(width, height);
+    context.strokeStyle = "blue";
+    context.lineWidth = 2;
     context.stroke();
 }
 
