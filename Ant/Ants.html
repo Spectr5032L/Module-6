@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1200">
+    <title>Муравьиный алгоритм</title>
+    <link rel="stylesheet" href="Ants.css">
+</head>
+<body>
+
+    <center>
+    <header class="animated-text">
+        <p>Муравьиный алгоритм</p>
+    </header>
+    </center>
+
+    <br>
+    <button id="start">Запустить алгоритм</button>
+    <button id="clear">Очистить</button>
+    <br> <br>
+
+    <div> Длина пути: </div>  <div id="LengthPath"> *Запустите алгоритм* </div>
+    <br> <br>
+
+    <label for="sliderNumberGenerations"> Выберите количество поколений: </label>
+    <input id = "sliderNumberGenerations" type="range" min = 100 max = 10000> <div id="coutNumberGenerations"> 5000 </div>
+    <br>
+    <label for="sliderQ"> Выберите сколько феромонов оставляет муравей: </label>
+    <input id = "sliderQ" type="range" min = 1 max = 500> <div id="coutQ"> 250 </div>
+    <br> <br>
+
+    <input type="number" id="width" placeholder="Введите значение ширины">
+    <input type="number" id="height" placeholder="Введите значение высоты">
+    <button id="Input">Ввод</button>
+    <br>  
+
+    <canvas class="canvas"></canvas>
+    <script src="Ants.Js"></script>
+</body>
+</html>
