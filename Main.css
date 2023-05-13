@@ -1,6 +1,95 @@
-@font-face {
-    font-family: 'MyFont';
-    src: url('font.woff2') format('woff2');
-    font-weight: normal;
+.container {
+  position: relative;
+  width: 1500px;
+  height: 1500px;
+  transform-origin: top left;
+  /* transform: rotate(-90deg) translateX(-1453px); */
+}
+
+.Back img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.title_1 {
+    position: absolute;
+    top: 10px;
+    left: 200px;
+    width: 1037px;
+    height: 124px;
+    font-family: 'Hitch Hike', sans-serif;
     font-style: normal;
-  }  
+    font-weight: 400;
+    font-size: 90px;
+    line-height: 124px;
+    color: #FFFFFF;
+    z-index: 2;
+    text-align: center;
+  }
+
+.title_2 {
+    position: absolute;
+    width: 241px;
+    height: 88px;
+    font-family: 'Hitch Hike', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 88px;
+    color: #FFFFFF;
+    left: 600px;
+    top: 150px;
+    z-index: 2;
+    text-align: center;
+}
+
+.square {
+    position: absolute;
+    width: 1077px;
+    height: 234px;
+    background: linear-gradient(87.39deg, #9B1CFF 1.83%, rgba(255, 61, 0, 0) 120.46%);
+    background-blend-mode: multiply;
+    border-radius: 67px;
+    left: 180px;
+    top: 50px;
+    z-index: 1;
+  }
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+  p {
+    position: absolute;
+    width: 1037px;
+    height: 124px;
+    left: calc(50% - 1037px/2 - 0.5px);
+    top: calc(50% - 124px/2 - 734px);
+    font-family: 'Hitch Hike', cursive;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 90px;
+    line-height: 124px;
+    color: #FFFFFF;
+  }
+   */
+  
+  /* body {
+    background-image: url("Фон/2.jpg");
+    background-size: cover;
+  } */
+  
