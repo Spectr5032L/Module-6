@@ -120,7 +120,6 @@ function drawVertexes(){
         context.beginPath();
         context.fillStyle = '#ff4242';      // ff4242 - красный a8a1a1 - серый
         context.fillRect(vertexes[i][0] - 10, vertexes[i][1] - 10, 20, 20);
-
     }
 }
 
@@ -197,7 +196,6 @@ async function antsAlgoritm(){
             pheromones[i][j] = 0.2;
         }
     }
-
 
     let end = vertexesLength * 2; 
 
