@@ -130,7 +130,8 @@ function compare(a, b) {
     return 0;
   }
 }
-async function aStar() {
+let c = 0;
+async function aStar(message) {
   let count = 0;
   // Выключаем кнопочки
   off()
@@ -199,6 +200,9 @@ async function aStar() {
     }
   }
   // Отрисовка пути
+  if (!(currentCell.x === finish.x && currentCell.y === finish.y)){
+    alert("Не могу найти путь");
+  }
   if (currentCell.x === finish.x && currentCell.y === finish.y) {
     for(;currentCell.parent != null; currentCell = currentCell.parent) {
       if(count >= Math.floor(size / 10)){
@@ -208,10 +212,11 @@ async function aStar() {
       count++;
       if (!(currentCell.x === finish.x && currentCell.y === finish.y)) {
         document.getElementById('table').rows[currentCell.y].cells[currentCell.x].dataset.mode = 'path';
+        c++;
       }
-      console.log(currentCell.parent);
     }
   }
+  alert("Длина пути: " + c);
   on();
 }
 document.getElementById('aStar').onclick = function (){aStar().then(r => (r))};
