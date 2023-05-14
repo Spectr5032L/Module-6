@@ -130,13 +130,13 @@ function compare(a, b) {
     return 0;
   }
 }
-async function aStar() {
+let c = 0;
+async function aStar(message) {
   let count = 0;
   // Выключаем кнопочки
   off()
   // Извлекаем размер
   let size = document.getElementById('tableSize').value;
-  clear();
   let startNode = new Node();
   startNode.x = Number(start.x);
   startNode.y = Number(start.y);
@@ -146,15 +146,11 @@ async function aStar() {
   // Проверенные клетки
   let checkedCells = [];
   let currentCell = new Node();
-  if(count >= Math.floor(size / 10)){
-    await new Promise(r => setTimeout(r, 100));
-    count = 0;
-  }
   count++;
   // Пока не проверены все доступные клетки
   while (empty.length > 0) {
     empty.sort(compare);
-    // Update current cell
+    // Установка текущей клетки
     currentCell = empty[0];
     empty.splice(empty.indexOf(currentCell), 1);
     checkedCells.push(currentCell);
@@ -200,6 +196,9 @@ async function aStar() {
     }
   }
   // Отрисовка пути
+  if (!(currentCell.x === finish.x && currentCell.y === finish.y)){
+    alert("Не могу найти путь");
+  }
   if (currentCell.x === finish.x && currentCell.y === finish.y) {
     for(;currentCell.parent != null; currentCell = currentCell.parent) {
       if(count >= Math.floor(size / 10)){
@@ -207,14 +206,17 @@ async function aStar() {
         count = 0;
       }
       count++;
-      if (currentCell.x !== finish.x && currentCell.y !== finish.y) {
+      if (!(currentCell.x === finish.x && currentCell.y === finish.y)) {
         document.getElementById('table').rows[currentCell.y].cells[currentCell.x].dataset.mode = 'path';
+        c++;
       }
     }
   }
+  alert("Длина пути: " + c);
   on();
 }
 document.getElementById('aStar').onclick = function (){aStar().then(r => (r))};
+
 function setStartFinishCells() {
   clear();
   off();
@@ -225,7 +227,7 @@ function setStartFinishCells() {
   table.addEventListener('click', createStartFinishCells);
 }
 document.getElementById('createStartFinish').onclick = function() {setStartFinishCells()};
-// Очистить
+// Очистка
 function clear() {
   let size = document.getElementById('tableSize').value;
   for (let i = 0; i < size; i++) {
@@ -328,14 +330,12 @@ function maze() {
   }
   on();
 }
-// Выключить кнопки
 function off(){
   mazeButton.disabled = true;
   algorithmButton.disabled = true;
   changeSize.disabled = true;
   setStartFinish.disabled = true;
 }
-// Включисть кнопки
 function on(){
   mazeButton.disabled  = false;
   algorithmButton.disabled = false;
