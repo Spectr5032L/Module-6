@@ -1,9 +1,13 @@
+@font-face {
+  font-family: Hitch Hike; 
+  src: url(Hitch-hike.otf); 
+ }
+
 .container {
   position: relative;
   width: 1500px;
   height: 1600px;
   transform-origin: top left;
-  /* transform: rotate(-90deg) translateX(-1453px); */
 }
 
 .Back img {

@@ -1,3 +1,8 @@
+@font-face {
+  font-family: Hitch Hike; 
+  src: url(Hitch-hike.otf); 
+ }
+
 .animated-text p {
 	opacity: 0;
 }

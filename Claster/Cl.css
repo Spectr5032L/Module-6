@@ -1,3 +1,8 @@
+@font-face {
+	font-family: Hitch Hike; 
+	src: url(Hitch-hike.otf); 
+   }
+
 .animated-text p 
 {
 	opacity: 0;
@@ -89,4 +94,31 @@ button {
   input[type="number"]:focus {
 	outline: none;
 	border: 2px solid #b803f9;
+  }
+
+  .CLS {
+	position: absolute;
+	width: 100px;
+	height: 50px;
+    background: linear-gradient(27.03deg, #9000ff 0%, #7100c7 0.01%, rgba(0, 68, 255, 0.6) 97.92%);
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.25);
+	border-radius: 20px;
+	left: 15px;
+	top: 25px;
+  }
+  
+  .CL1 {
+	position: absolute;
+	left: 5px;
+	top: -18px;
+	width: 122px;
+	height: 52px;
+	font-family: 'Hitch Hike', sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 38px;
+	line-height: 88px;
+	color: #ffffff;
+	z-index: 2;
+	text-align: center;
   }
