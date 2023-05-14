@@ -161,7 +161,7 @@ function KMeans()
 
 function DBSCAN() 
 {
-	let minCountPoints = 5;
+	let minCountPoints = 2;
 	let maxDistance = 30;
 	let sizePoint = receiptSizePoint();
 	maxDistance *= sizePoint / 5;
@@ -173,9 +173,9 @@ function DBSCAN()
     {
         cluster[mainPoint] = clusterInd;
 
-        for (let i of neighbors) 
+        for (let i = 0; i < neighbors.length; i++) 
         {
-            let nextPoint = i;
+            let nextPoint = neighbors[i];
 
             if (!visited.has(nextPoint)) 
             {
@@ -189,7 +189,7 @@ function DBSCAN()
             if (cluster[nextPoint] === -1) 
                 cluster[nextPoint] = clusterInd;
         }
-    }
+    } 
     
     function searchNeighbors(mainPoint) 
     {
