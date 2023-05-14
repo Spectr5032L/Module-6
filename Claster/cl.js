@@ -25,12 +25,12 @@ function receiptSizePoint()
     return sizePoint;
 }
 
-function clear_canvas()
+function clearCanvas()
 {
     location.reload();
 }
 
-function random_points()
+function randomPoints()
 {
     let countPoints = document.getElementById("countPoints").value;
 
@@ -86,7 +86,7 @@ canvas.addEventListener('click', function(event)
     }
 });
 
-function start_with_clusters()
+function startWithClusters()
 {
     alert("Не расставляйте центры слишком близко друг к другу иначе алгоритм будет работать не корректно")
 
@@ -96,9 +96,12 @@ function start_with_clusters()
         let y = event.pageY - canvas.offsetTop;
         clusters.push({x: x, y: y});
         pointsKMeans.pop();
+        pointsDBSCAN.pop();
 
         let clusterIndex = 0;
         let countClusters = document.getElementById("countClusters").value; 
+        if(countClusters < 2)
+            countClusters = 2;
 
         for(let i = 0; i < clusters.length; i++) 
         {
@@ -110,18 +113,18 @@ function start_with_clusters()
 
         if(clusterIndex == countClusters)
         {
-            start();
+            KMeans();
             DBSCAN();
         }
     });
 }
 
-function start() 
+function KMeans() 
 {
     let countClusters = document.getElementById("countClusters").value;
     
 
-    for(let iter = 0; iter < 50; iter++) 
+    for(let iter = 0; iter < 100; iter++) 
     {
         let newClusters = [];
         
@@ -153,45 +156,34 @@ function start()
             cnvs.fillStyle = ["red", "green", "blue", "aquamarine", "mediumpurple"][clusterIndex];
             cnvs.fill();
         }
-        
-        for(let i = 0; i < countClusters; i++) 
-        {
-            if(newClusters[i].count > 0) 
-            {
-                newClusters[i].x /= newClusters[i].count;
-                newClusters[i].y /= newClusters[i].count;
-            }
-        }
-        clusters = newClusters;
     }
 }
 
 function DBSCAN() 
 {
-	let minCountPoints = 2;
-	let minDistance = 20;
+	let minCountPoints = 5;
+	let maxDistance = 30;
 	let sizePoint = receiptSizePoint();
-	minDistance *= sizePoint / 5;
+	maxDistance *= sizePoint / 5;
     let clusterInd = 0;
     let visited = new Set();
     let cluster = new Array(pointsDBSCAN.length).fill(-1);
 
-    function cluster_expansion(main_point, clusterInd) 
+    function clusterExpansion(mainPoint, clusterInd, neighbors) 
     {
-        cluster[main_point] = clusterInd;
-        let neighbors = search_neighbors(main_point);
+        cluster[mainPoint] = clusterInd;
 
-        for (let neigh of neighbors) 
+        for (let i of neighbors) 
         {
-            let nextPoint = neigh;
+            let nextPoint = i;
 
             if (!visited.has(nextPoint)) 
             {
                 visited.add(nextPoint);
-                let next_Neighbors = search_neighbors(nextPoint);
+                let nextNeighbors = searchNeighbors(nextPoint);
 
-                if (next_Neighbors.length >= minCountPoints) 
-                    neighbors = neighbors.concat(next_Neighbors);
+                if (nextNeighbors.length >= minCountPoints) 
+                    neighbors = neighbors.concat(nextNeighbors);
             }
 
             if (cluster[nextPoint] === -1) 
@@ -199,11 +191,11 @@ function DBSCAN()
         }
     }
     
-    function search_neighbors(main_point) 
+    function searchNeighbors(mainPoint) 
     {
         let neighbors = [];
         for (let i = 0; i < pointsDBSCAN.length; i++) 
-			if (i !== main_point && Math.sqrt((pointsDBSCAN[i].x - pointsDBSCAN[main_point].x) ** 2 + (pointsDBSCAN[i].y - pointsDBSCAN[main_point].y) ** 2) <= minDistance)
+			if (i !== mainPoint && Math.sqrt((pointsDBSCAN[i].x - pointsDBSCAN[mainPoint].x) ** 2 + (pointsDBSCAN[i].y - pointsDBSCAN[mainPoint].y) ** 2) <= maxDistance)
                 neighbors.push(i);
         return neighbors;
     }
@@ -213,14 +205,14 @@ function DBSCAN()
         if (!visited.has(i))
         {
             visited.add(i);
-            let neighbors = search_neighbors(i);
+            let neighbors = searchNeighbors(i);
 
             if (neighbors.length < minCountPoints) 
                 cluster[i] = -1;
             else 
             {
                 cluster[i] = clusterInd;
-                cluster_expansion(i, clusterInd);
+                clusterExpansion(i, clusterInd, neighbors);
                 clusterInd++;
             }
         }
@@ -245,6 +237,7 @@ function DBSCAN()
             "#00FF00",
             "#D35400"
         ]
+
         if (cluster[i] !== -1)
         {
             cnvs.beginPath();
