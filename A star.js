@@ -146,15 +146,11 @@ async function aStar(message) {
   // Проверенные клетки
   let checkedCells = [];
   let currentCell = new Node();
-  if(count >= Math.floor(size / 10)){
-    await new Promise(r => setTimeout(r, 100));
-    count = 0;
-  }
   count++;
   // Пока не проверены все доступные клетки
   while (empty.length > 0) {
     empty.sort(compare);
-    // Update current cell
+    // Установка текущей клетки
     currentCell = empty[0];
     empty.splice(empty.indexOf(currentCell), 1);
     checkedCells.push(currentCell);
@@ -231,7 +227,7 @@ function setStartFinishCells() {
   table.addEventListener('click', createStartFinishCells);
 }
 document.getElementById('createStartFinish').onclick = function() {setStartFinishCells()};
-// Clear the way
+// Очистка
 function clear() {
   let size = document.getElementById('tableSize').value;
   for (let i = 0; i < size; i++) {
