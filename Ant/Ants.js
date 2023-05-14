@@ -44,18 +44,6 @@ function mouseClick(e){
     let clientX = e.pageX - e.target.offsetLeft;
     let clientY = e.pageY - e.target.offsetTop;
 
-    context.beginPath();
-    if (vertexes.length >= 1){
-        for(let vert of vertexes){
-            let vertX = vert[0];
-            let vertY = vert[1];
-
-            let vector = [clientX - vertX , clientY - vertY];
-            let s = Math.sqrt(vector[0] * vector[0] + vector[1] * vector[1]);
-            context.moveTo(vertX + vector[0] * 10 / s, vertY + vector[1] * 10 / s);
-        }
-    }
-
     vertexes.push([clientX, clientY]);
     drawVertexes();
 }
@@ -126,7 +114,6 @@ function drawFinishPath(bestPath, color){
     document.getElementById("LengthPath").innerText = Math.round(pathLength);
 
 }
-
 
 function drawVertexes(){
     for (let i = 0; i < vertexes.length; i++){
@@ -216,7 +203,7 @@ async function antsAlgoritm(){
 
     for (let i = 0; i < numberGenerations; i++){
         if (end === 0){
-            drawFinishPath(bestAnts[0], "rgb(142,250,142)");
+            drawFinishPath(bestAnts[0], "rgb(142,250,142)"); 
             break;
         }
 
@@ -302,7 +289,7 @@ async function antsAlgoritm(){
 
         end -= 1;
         console.log(i)
-        await wait(100);
+        await wait(0);
     }
 
 }

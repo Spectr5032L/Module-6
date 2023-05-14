@@ -33,6 +33,7 @@ function clear(){
     context.clearRect(0, 0, canvas.width, canvas.height);
     drawField();
     vertexes = [];
+    document.getElementById("LengthPath").innerText = "*Запустите алгоритм*";
 }
 
 function clearNewPath(){
@@ -43,18 +44,6 @@ function clearNewPath(){
 function mouseClick(e){
     let clientX = e.pageX - e.target.offsetLeft;
     let clientY = e.pageY - e.target.offsetTop;
-
-    context.beginPath();
-    if (vertexes.length >= 1){
-        for(let vert of vertexes){
-            let vertX = vert[0];
-            let vertY = vert[1];
-
-            let vector = [clientX - vertX , clientY - vertY];
-            let s = Math.sqrt(vector[0] * vector[0] + vector[1] * vector[1]);
-            context.moveTo(vertX + vector[0] * 10 / s, vertY + vector[1] * 10 / s);
-        }
-    }
 
     vertexes.push([clientX, clientY]);
     drawVertexes();
@@ -223,6 +212,7 @@ slider2.addEventListener("input", function()
 })
 
 async function geneticAlg(){
+    document.getElementById("LengthPath").innerText = "*Запустите алгоритм*";
     clearNewPath();
     drawVertexes();
     let firstGeneration = [];
