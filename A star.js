@@ -136,7 +136,6 @@ async function aStar() {
   off()
   // Извлекаем размер
   let size = document.getElementById('tableSize').value;
-  clear();
   let startNode = new Node();
   startNode.x = Number(start.x);
   startNode.y = Number(start.y);
@@ -207,14 +206,16 @@ async function aStar() {
         count = 0;
       }
       count++;
-      if (currentCell.x !== finish.x && currentCell.y !== finish.y) {
+      if (!(currentCell.x === finish.x && currentCell.y === finish.y)) {
         document.getElementById('table').rows[currentCell.y].cells[currentCell.x].dataset.mode = 'path';
       }
+      console.log(currentCell.parent);
     }
   }
   on();
 }
 document.getElementById('aStar').onclick = function (){aStar().then(r => (r))};
+
 function setStartFinishCells() {
   clear();
   off();
@@ -225,7 +226,7 @@ function setStartFinishCells() {
   table.addEventListener('click', createStartFinishCells);
 }
 document.getElementById('createStartFinish').onclick = function() {setStartFinishCells()};
-// Очистить
+// Clear the way
 function clear() {
   let size = document.getElementById('tableSize').value;
   for (let i = 0; i < size; i++) {
@@ -328,14 +329,12 @@ function maze() {
   }
   on();
 }
-// Выключить кнопки
 function off(){
   mazeButton.disabled = true;
   algorithmButton.disabled = true;
   changeSize.disabled = true;
   setStartFinish.disabled = true;
 }
-// Включисть кнопки
 function on(){
   mazeButton.disabled  = false;
   algorithmButton.disabled = false;
