@@ -1,0 +1,92 @@
+.animated-text p 
+{
+	opacity: 0;
+}
+  
+
+@keyframes fade-in 
+{
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+  
+
+.animated-text p 
+{
+	font-size: 10.5vw;
+	animation-name: fade-in;
+	animation-duration: 5s; 
+	animation-timing-function: ease-in-out; 
+	animation-fill-mode: forwards;
+}
+.canvas
+{
+	width: 1400px; 
+	height: 650px; 
+	outline: 2px solid #b803f9;
+}
+    
+.div
+{
+	font-size: 23px;
+}
+
+.spanRight
+{
+	margin-right: 330px;
+}
+
+.spanLeft
+{
+	margin-left: 330px;
+}
+
+button:hover 
+{
+	background-color: #848484;
+}
+	
+button:active 
+{
+	background-color: #46055d;
+}
+
+label::before 
+{
+	content: "*";
+	color: #b803f9;
+}
+
+button {
+	background-color: #b803f9;
+	border: none; 
+	color: white; 
+	padding: 5px 15px; 
+	text-align: center; 
+	text-decoration: none; 
+	font-size: 16px; 
+	margin: 4px 2px; 
+	cursor: pointer; 
+	border-radius: 10px; 
+  }
+  
+  header p {
+	font-size: 48px;
+	font-weight: bold;
+	color: #b803f9;
+	text-shadow: 2px 2px 2px #000000;
+	margin-bottom: 20px;
+  }
+  
+  input[type="number"] {
+	font-size: 16px;
+	border: 1px solid #cccccc;
+	border-radius: 5px;
+	padding: 5px;
+	margin-right: 10px;
+  }
+  
+  input[type="number"]:focus {
+	outline: none;
+	border: 2px solid #b803f9;
+  }
